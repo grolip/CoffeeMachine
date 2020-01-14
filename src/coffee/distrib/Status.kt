@@ -1,0 +1,16 @@
+package coffee.distrib
+
+enum class Status {
+	HOME,
+	HOME_SELECTION,
+	BUY,
+	BUY_SELECTION,
+	FILL,
+	FILL_WATER,
+	FILL_MILK,
+	FILL_COFFEE,
+	FILL_CUP,
+	TAKE,
+	REMAINING,
+	EXIT
+}
