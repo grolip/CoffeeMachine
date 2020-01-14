@@ -4,15 +4,15 @@ import coffee.distrib.Status
 import coffee.distrib.Recipe
 
 
-open class DistribUI(
+class DistribUI(
 	var money: Int, 
 	var water: Int,
 	var milk: Int,
 	var coffee: Int,
 	var cup: Int){
-		var products: MutableList<Recipe> = mutableListOf()
-		var status = Status.HOME
 
+	var products: MutableList<Recipe> = mutableListOf()
+	var status = Status.HOME
 
 	fun isAvailable(product: Int, quantity: Int = 1): Boolean {
 		var missing = "nothing"
@@ -36,7 +36,7 @@ open class DistribUI(
 		return isAvailable
 	}
 
-	fun home(userInput: String){
+	fun home(userInput: String) {
 		when (userInput) {
 			"buy" -> this.status = Status.BUY
 			"fill" -> this.status = Status.FILL
@@ -51,7 +51,7 @@ open class DistribUI(
 		this.status = Status.HOME_SELECTION
 	}
 
-	fun buy(userInput: String, quantity: Int = 1){
+	fun buy(userInput: String, quantity: Int = 1) {
 		if (userInput != "back"){
 			val choice: Int? = userInput.toIntOrNull()
 			if(choice is Int && choice - 1 in this.products.indices){
@@ -72,7 +72,7 @@ open class DistribUI(
 		this.status = Status.BUY_SELECTION
 	}
 
-	fun fill(userInput: String){
+	fun fill(userInput: String) {
 		val quantity: Int? = userInput.toIntOrNull()
 		if (quantity is Int && quantity > 0){
 			when (this.status){
@@ -108,13 +108,13 @@ open class DistribUI(
 		this.status = Status.FILL_CUP
 	}
 
-	fun take(){
+	fun take() {
 		val total = this.money
 		this.money = 0
 		println("\nI gave you $$total")
 	}
 
-	fun remaining(){
+	fun remaining() {
 		println("\nThe coffee machine has:")
 		println("${this.water} of water")
 		println("${this.milk} of milk")
@@ -123,7 +123,7 @@ open class DistribUI(
 		println("${this.money} of money")
 	}
 
-	fun execute(userInput: String){
+	fun execute(userInput: String) {
 		when (this.status) {
 			Status.HOME -> this.homePrompt()
 			Status.HOME_SELECTION -> this.home(userInput)
